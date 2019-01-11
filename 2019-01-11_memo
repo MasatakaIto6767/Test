@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Replace {
-    static void templateFile(List<String>templateList) {
-        try
-
-        {
+    static void templateFile(List<String> templateList) {
+        try {
             //ファイルのパスを指定
             File file = new File("/Users/itom817/Task_FE2/src/template.txt");
             //ファイルが存在しない場合は例外の発生
@@ -21,24 +19,18 @@ public class Replace {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String data;
-
             while ((data = bufferedReader.readLine()) != null) {
                 templateList.add(data);
             }
             //ファイルを閉じてリソースを解放
             bufferedReader.close();
-        } catch (
-                IOException e)
-
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    static void defFile(List<String>defList) {
-        try
-
-        {
+    static void defFile(List<String> defList) {
+        try {
             //ファイルのパスを指定
             File file = new File("/Users/itom817/Task_FE2/src/replacement.txt");
             //ファイルが存在しない場合は例外の発生
@@ -50,22 +42,17 @@ public class Replace {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String data;
-
             while ((data = bufferedReader.readLine()) != null) {
                 defList.add(data);
-
             }
             //ファイルを閉じてリソースを解放
             bufferedReader.close();
-        } catch (
-                IOException e)
-
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    static void defListLoop(List<String>defList,List<String>templateList) {
+    static void defListLoop(List<String> defList, List<String> templateList) {
         //defListを１行ずつ取り出す
         for (int i = 0; i < defList.size() - 1; i++) {
             String str = defList.get(i);
@@ -84,7 +71,7 @@ public class Replace {
                 String replacedTemplate = str1.replace(placeholder, value);
                 //templateListに置換済みのものを上書き
                 templateList.set(k, replacedTemplate);
-                }
+            }
             //}
         }
     }
@@ -95,7 +82,7 @@ public class Replace {
         templateFile(templateList);
         List<String> defList = new ArrayList<String>();
         defFile(defList);
-        defListLoop(defList,templateList);
+        defListLoop(defList, templateList);
         for (int j = 0; j < templateList.size(); j++) {
             System.out.println(templateList.get(j));
         }
