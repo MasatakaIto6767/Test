@@ -54,7 +54,7 @@ public class Replace {
 
     static void defListLoop(List<String> defList, List<String> templateList) {
         //defListを１行ずつ取り出す
-        for (int i = 0; i < defList.size() - 1; i++) {
+        for (int i = 0; i < defList.size(); i++) {
             String str = defList.get(i);
             //「：」の文字より前をkeyと後をvalueに設定
             int index = str.indexOf(":");
