@@ -1,0 +1,60 @@
+package tools.retros.domain.model.kpt;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
+public class IssueDateTimeTest {
+
+    @Test
+    public void Test_OK_correctDateTime() {
+        String stringDateTime1 = "2018-12-26T00:00:00+09:00";
+        String stringDateTime2 = "2018-12-26T00:00+09:00";
+
+        IssueDateTime issueDateTime = new IssueDateTime(stringDateTime1);
+
+        assertEquals(stringDateTime2, issueDateTime.date().toString());
+        assertEquals(stringDateTime1, issueDateTime.format());
+
+    }
+
+    @Test
+    public void Test_NG_incorrect() {
+        String stringDateTime = "2019-13-01T00:00:00+09:00";
+
+        try {
+            new IssueDateTime(stringDateTime);
+            Assert.fail();
+
+        } catch (Exception e) {
+            assertEquals("java.time.format.DateTimeParseException", e.getClass().getName());
+        }
+    }
+
+    @Test
+    public void Test_NG_Temp() {
+        String stringDateTime = "";
+
+        try {
+            new IssueDateTime(stringDateTime);
+            Assert.fail();
+
+        } catch (Exception e) {
+            assertEquals("java.time.format.DateTimeParseException", e.getClass().getName());
+        }
+    }
+
+    @Test
+    public void Test_NG_Null() {
+        String stringDateTime = null;
+
+        try {
+            new IssueDateTime(stringDateTime);
+            Assert.fail();
+
+        } catch (Exception e) {
+            assertEquals("dateStr が設定されていません。", e.getMessage());
+        }
+    }
+}
